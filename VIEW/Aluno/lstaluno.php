@@ -1,9 +1,11 @@
 <?php
-  include_once 'conexao.php';
-  $sql = "select * from aluno;";
-  $con = Conexao::conectar();
-  $registros = $con->query($sql);
-  $con = Conexao::desconectar();
+  include_once "C:/xampp/htdocs/lpbccphp2025/DAL/aluno.php";
+  include_once "C:/xampp/htdocs/lpbccphp2025/MODEL/aluno.php"; 
+  use DAL\Aluno; 
+
+  $dalAluno = new DAL\Aluno(); 
+  $lstAlunos = $dalAluno->Select(); 
+  
 ?>
 
 
@@ -21,8 +23,10 @@
     <title>Listar Alunos</title>
 </head>
 <body>
+    <div class="row">
+    <div class="col m8 s8 offset-m2 offset-s2 center">
     <h1>Listagem Geral de Alunos</h1>
-    <table class="striped">
+    <table class="striped  blue-grey lighten-2">
         <tr>
             <th>ID</th>
             <th>Nome</th>
@@ -31,16 +35,19 @@
         </tr>
 
         <?php
-         foreach ($registros as $linha) { ?>
+         foreach ($lstAlunos as $aluno) { ?>
             <tr>
-                <td> <?php echo $linha['id']; ?> </td>
-                <td> <?php echo $linha['nome'] ?> </td>
-                <td> <?php echo $linha['curso'] ?> </td>
-                <td> <?php echo $linha['serie'] ?> </td>
+                <td> <?php echo $aluno->getId(); ?> </td>
+                <td> <?php echo $aluno->getNome(); ?> </td>
+                <td> <?php echo $aluno->getCurso(); ?> </td>
+                <td> <?php echo $aluno->getSerie(); ?> </td>
             </tr>
         <?php } ?>
 
 
-    </table>
+         </table>
+
+    </div>
+    </div>
 </body>
 </html>

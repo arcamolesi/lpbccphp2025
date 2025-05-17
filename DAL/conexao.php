@@ -1,4 +1,7 @@
 <?php 
+   namespace DAL; 
+   use PDO; 
+
    class Conexao {
       private static $dbNome = 'biblioteca'; 
       private static $dbHost = 'localhost';
@@ -7,8 +10,7 @@
       
       private static $cont = null; 
 
-      
-    public static function conectar(){
+      public static function conectar(){
         if (self::$cont == null){
             try{ 
                //self::$cont = new PDO("mysql:host=localhost;dbname=biblioteca", "root", ""); 
