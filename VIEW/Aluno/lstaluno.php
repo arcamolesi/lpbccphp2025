@@ -10,7 +10,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
      <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
