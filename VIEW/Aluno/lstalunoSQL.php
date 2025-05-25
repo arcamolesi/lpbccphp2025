@@ -1,5 +1,5 @@
 <?php
-  include_once "C:/xampp/htdocs/lpbccphp2025/DAL/conexao.php";
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/conexao.php";
   $sql = "select * from aluno;";
   $con = DAL\Conexao::conectar();
   $registros = $con->query($sql);

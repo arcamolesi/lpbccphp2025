@@ -2,8 +2,8 @@
 
 namespace DAL;
 
-include_once "C:/xampp/htdocs/lpbccphp2025/DAL/conexao.php";
-include_once "C:/xampp/htdocs/lpbccphp2025/MODEl/aluno.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/conexao.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/MODEl/aluno.php";
 
 use DAL\Conexao;
 
@@ -29,9 +29,28 @@ class Aluno
       return $lstAlunos;
    }
 
+   public function SelectById(int $id)
+   {
+      $sql = "select * from aluno where id=?;";
+      $con =  Conexao::conectar();
+      $query = $con->prepare($sql);
+      $query->execute(array($id));
+      $linha = $query->fetch(\PDO::FETCH_ASSOC);
+      $con = Conexao::desconectar();
 
 
-   public function SelectId(int $id) {}
+      $aluno = new \MODEL\Aluno();
+      $aluno->setId($linha['id']);
+      $aluno->setNome($linha['nome']);
+      $aluno->setCurso($linha['curso']);
+      $aluno->setSerie($linha['serie']);
+
+      return $aluno;
+   }
+
+
+
+
 
 
    public function Insert(\MODEL\Aluno $aluno)
@@ -48,8 +67,20 @@ class Aluno
       return $result;
    }
 
+   public function Update(\MODEL\Aluno $aluno)
+   {
+      $sql = "UPDATE aluno SET nome=?, curso=?, serie=? WHERE id = ?;";
+
+      $con = Conexao::conectar();
+      $query = $con->prepare($sql);
+      $result = $query->execute(array($aluno->getNome(), $aluno->getCurso(), $aluno->getSerie(), $aluno->getID()));
+      $con = Conexao::desconectar();
+
+      // echo $result->errorCode();
+
+      return $result;
+   }
 
 
-   public function Update() {}
    public function Delete() {}
 }
