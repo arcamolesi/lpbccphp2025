@@ -1,7 +1,7 @@
 <?php 
   include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/MODEL/aluno.php"; 
   include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/aluno.php";
-
+  include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/VIEW/menu.php";
    $id = $_GET['id'];
    //echo "id: ". $id; 
  

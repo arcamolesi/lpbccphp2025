@@ -1,7 +1,7 @@
 <?php
 include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/aluno.php";
 include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/MODEL/aluno.php";
-
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/VIEW/menu.php";
 use DAL\Aluno;
 
 $dalAluno = new DAL\Aluno();
@@ -58,9 +58,19 @@ $lstAlunos = $dalAluno->Select();
                     <td>
                         <a class="btn-floating btn-small waves-effect waves-light orange">
                             <i class="material-icons"
-                                onclick="JavaScript:location.href='frmEdtAluno.php?id='+ '<?php echo $aluno->getID(); ?>'"
-                                >edit</i>
+                                onclick="JavaScript:location.href='frmEdtAluno.php?id='+ '<?php echo $aluno->getID(); ?>'">edit</i>
                         </a>
+                        <a class="btn-floating btn-small waves-effect waves-light blue">
+                            <i class="material-icons"
+                                onclick="JavaScript:location.href='frmDetAluno.php?id='+ '<?php echo $aluno->getID(); ?>'">details</i>
+                        </a>
+
+                        <a class="btn-floating btn-small waves-effect waves-light red">
+                            <i class="material-icons"
+                                 onclick="JavaScript: remover( <?php echo $aluno->getId(); ?> )">delete</i>
+                        </a>
+
+                 
                     </td>
                 </tr>
             <?php } ?>
@@ -73,3 +83,11 @@ $lstAlunos = $dalAluno->Select();
 </body>
 
 </html>
+
+<script>
+    function remover(id) {
+        if (confirm('Excluir Aluno ' + id + '?')) {
+            location.href = 'opRemAluno.php?id=' + id;
+        }
+    }
+</script>

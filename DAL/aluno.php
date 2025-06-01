@@ -49,10 +49,6 @@ class Aluno
    }
 
 
-
-
-
-
    public function Insert(\MODEL\Aluno $aluno)
    {
       $sql = "INSERT INTO aluno (nome, curso, serie)
@@ -82,5 +78,15 @@ class Aluno
    }
 
 
-   public function Delete() {}
+   public function Delete(int $id)
+   {
+      $sql = "DELETE FROM aluno WHERE id = ?;";
+
+      $con = Conexao::conectar();
+      $query = $con->prepare($sql);
+      $result = $query->execute(array($id));
+      $con = Conexao::desconectar();
+
+      return $result;
+   }
 }

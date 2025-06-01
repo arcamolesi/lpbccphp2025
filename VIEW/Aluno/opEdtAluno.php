@@ -14,4 +14,5 @@ $dalAluno = new DAL\Aluno();
 $dalAluno->Update($aluno);
 
 header("location: lstaluno.php");
-?>
+
+
