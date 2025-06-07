@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/05/2025 às 15:52
+-- Tempo de geração: 08/06/2025 às 01:42
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -29,7 +29,6 @@ USE `biblioteca`;
 -- Estrutura para tabela `aluno`
 --
 
-DROP TABLE IF EXISTS `aluno`;
 CREATE TABLE `aluno` (
   `id` int(11) NOT NULL,
   `nome` varchar(35) NOT NULL,
@@ -42,8 +41,9 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`id`, `nome`, `curso`, `serie`) VALUES
-(1, 'Almir Camolesi', 'ADS', 3),
-(2, 'Samuel Camolesi', 'Games Digitais', 3);
+(1, 'Almir Camolesi', 'BCC', 5),
+(2, 'Samuel Camolesi', 'Games Digitais', 3),
+(9, 'Jose', 'BCC', 4);
 
 -- --------------------------------------------------------
 
@@ -51,7 +51,6 @@ INSERT INTO `aluno` (`id`, `nome`, `curso`, `serie`) VALUES
 -- Estrutura para tabela `emprestimo`
 --
 
-DROP TABLE IF EXISTS `emprestimo`;
 CREATE TABLE `emprestimo` (
   `id` int(11) NOT NULL,
   `aluno` int(11) NOT NULL,
@@ -65,8 +64,17 @@ CREATE TABLE `emprestimo` (
 --
 
 INSERT INTO `emprestimo` (`id`, `aluno`, `livro`, `dataemp`, `datadev`) VALUES
-(1, 1, 2, '2025-05-12', '0000-00-00'),
-(2, 2, 1, '2025-05-12', '0000-00-00');
+(1, 1, 2, '2025-05-12', '2025-06-02'),
+(2, 2, 1, '2025-05-12', '2025-06-02'),
+(6, 1, 1, '2025-06-16', '2025-06-19'),
+(7, 1, 1, '2025-06-24', '2025-06-02'),
+(8, 1, 1, '2025-06-09', '2025-06-10'),
+(9, 1, 1, '2025-06-03', '2025-06-02'),
+(10, 1, 1, '2025-06-16', '2025-06-02'),
+(11, 1, 1, '2025-06-18', '2025-06-02'),
+(12, 1, 1, '2025-06-18', '2025-06-03'),
+(13, 1, 1, '2025-06-10', '2025-06-03'),
+(14, 1, 1, '2025-06-06', '2025-06-07');
 
 -- --------------------------------------------------------
 
@@ -74,7 +82,6 @@ INSERT INTO `emprestimo` (`id`, `aluno`, `livro`, `dataemp`, `datadev`) VALUES
 -- Estrutura para tabela `livro`
 --
 
-DROP TABLE IF EXISTS `livro`;
 CREATE TABLE `livro` (
   `id` int(11) NOT NULL,
   `titulo` varchar(35) NOT NULL,
@@ -89,7 +96,29 @@ CREATE TABLE `livro` (
 
 INSERT INTO `livro` (`id`, `titulo`, `genero`, `valor`, `status`) VALUES
 (1, 'Poeira em Alto Mar', 'Ficção', 50, 'L'),
-(2, 'Introdução a MySQL', 'Tecnologia', 67.57, 'O');
+(2, 'Introdução a MySQL', 'Tecnologia', 67.57, 'O'),
+(3, 'PHP Avançado', 'Informatica', 65, 'L'),
+(4, 'Agilidade', 'Gestão', 87, 'L');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(10) NOT NULL,
+  `senha` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `usuario`, `senha`) VALUES
+(1, 'camolesi', '94bc6a5e2634a866e047f06cb384a2ea'),
+(2, 'samuca', '94bc6a5e2634a866e047f06cb384a2ea');
 
 --
 -- Índices para tabelas despejadas
@@ -116,6 +145,12 @@ ALTER TABLE `livro`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -123,18 +158,24 @@ ALTER TABLE `livro`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `emprestimo`
 --
 ALTER TABLE `emprestimo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `livro`
 --
 ALTER TABLE `livro`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
