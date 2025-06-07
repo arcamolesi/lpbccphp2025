@@ -1,3 +1,9 @@
+<?php
+ session_start(); 
+   if (!isset($_SESSION['login']))
+         Header("Location: ./index.php");   
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,6 +38,7 @@
                 <li><a href="/lpbccphp2025/view/Aluno/lstaluno.php">ALUNOS</a></li>
                 <li><a href="">LIVROS</a></li>
                 <li><a href="">EMPRESTIMOS</a></li>
+                <li><a href="/lpbccphp2025/view/logout.php">Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -49,6 +56,7 @@
         </li>
         <li><a href="/lpbccphp2025/View/home.php"><i class="material-icons white-text">home</i>Home</a></li>
         <li><a href="/lpbccphp2025/View/Aluno/lstaluno.php" class="white-text">Alunos</a></li>
+   
         <li>
             <div class="divider"></div>
         </li>
