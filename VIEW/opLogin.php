@@ -26,7 +26,7 @@ if (md5($senha) == $linha->getSenha())
     session_start();
     $_SESSION['login'] = $usuario;
     //$_SESSION['nivel'] = $linha['nivel']; 
-    header("location:menu.php");
+    header("location:home.php");
 
 }
 else {

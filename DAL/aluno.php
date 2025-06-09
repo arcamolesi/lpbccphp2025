@@ -38,7 +38,6 @@ class Aluno
       $linha = $query->fetch(\PDO::FETCH_ASSOC);
       $con = Conexao::desconectar();
 
-
       $aluno = new \MODEL\Aluno();
       $aluno->setId($linha['id']);
       $aluno->setNome($linha['nome']);
@@ -63,20 +62,18 @@ class Aluno
       return $result;
    }
 
+
    public function Update(\MODEL\Aluno $aluno)
    {
-      $sql = "UPDATE aluno SET nome=?, curso=?, serie=? WHERE id = ?;";
+      $sql = "UPDATE aluno SET nome = ?, curso = ?, serie = ? WHERE id = ?;";
 
       $con = Conexao::conectar();
       $query = $con->prepare($sql);
       $result = $query->execute(array($aluno->getNome(), $aluno->getCurso(), $aluno->getSerie(), $aluno->getID()));
       $con = Conexao::desconectar();
 
-      // echo $result->errorCode();
-
       return $result;
    }
-
 
    public function Delete(int $id)
    {
