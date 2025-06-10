@@ -6,9 +6,6 @@ include_once $_SERVER['DOCUMENT_ROOT']. "/lpbccphp2025/MODEL/livro.php";
 include_once $_SERVER['DOCUMENT_ROOT']. "/lpbccphp2025/MODEL/emprestimo.php";
 include_once $_SERVER['DOCUMENT_ROOT']. "/lpbccphp2025/DAL/emprestimo.php";
 
-
-
-
 use DAL\Emprestimo;
 
 $dalEmprestimo = new \DAL\Emprestimo();
@@ -45,9 +42,9 @@ $lstEmprestimos = $dalEmprestimo->Select();
                      <th>DEVOLUÇÃO</th> 
                      <th>OPERAÇÕES -
                         <a class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons"
-                                onclick="JavaScript:location.href='/bib/view/emprestimo/frmInsEmprestimo.php'">add</i></a>
+                                onclick="JavaScript:location.href='/lpbccphp2025/view/emprestimo/frmInsEmprestimo.php'">add</i></a>
                         <a class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons"
-                                onclick="JavaScript:location.href='/bib/view/home.php'">arrow_back</i></a>
+                                onclick="JavaScript:location.href='/lpbccphp2025/view/home.php'">arrow_back</i></a>
                     </th>
                 </tr>
             </thead>

@@ -51,7 +51,7 @@ class Aluno
    public function Insert(\MODEL\Aluno $aluno)
    {
       $sql = "INSERT INTO aluno (nome, curso, serie)
-           VALUES ('{$aluno->getNome()}','{$aluno->getCurso()}', '{$aluno->getSerie()}');";
+           VALUES ('?','{$aluno->getCurso()}', '{$aluno->getSerie()}');";
 
       $con = Conexao::conectar();
       $result = $con->query($sql);

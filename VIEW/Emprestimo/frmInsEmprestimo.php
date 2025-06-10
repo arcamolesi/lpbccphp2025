@@ -1,3 +1,18 @@
+<?php
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/View/menu.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/MODEL/aluno.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/MODEL/livro.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/aluno.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/lpbccphp2025/DAL/livro.php";
+
+$dalAluno = new DAL\Aluno();
+$lstAlunos = $dalAluno->Select();
+
+$dalLivro = new DAL\Livro();
+$lstLivros = $dalLivro->SelectByStatus('D');
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -8,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novo Empréstimo</title>
     <style>
-           .input-field label {
+        .input-field label {
             pointer-events: none;
         }
     </style>
@@ -24,12 +39,15 @@
 
             <form action="opInsEmprestimo.php" method="post" class="col s12 m10 offset-m1 l8 offset-l2">
 
-                <div class="input-field col s12">
+                           <div class="input-field col s12">
                     <select id="aluno_id" name="aluno">
                         <option value="" disabled selected>Escolha o Aluno</option>
-                        <option value="1">João da Silva</option>
-                        <option value="2">Maria Oliveira</option>
-                        <option value="3">Carlos Pereira</option>
+                        <?php
+                           foreach ($lstAlunos as $aluno) { ?>
+                             <option value="<?php echo $aluno->getId(); ?>">
+                                <?php echo $aluno->getNome(); ?>
+                             </option>
+                        <?php } ?>
                     </select>
                     <label for="aluno_id">Aluno:</label>
                 </div>
@@ -37,9 +55,12 @@
                 <div class="input-field col s12">
                     <select id="livro_id" name="livro">
                         <option value="" disabled selected>Escolha o Livro</option>
-                        <option value="1">Aventuras em PHP</option>
-                        <option value="2">O Segredo do Banco de Dados</option>
-                        <option value="3">CSS Descomplicado</option>
+                        <?php foreach ($lstLivros as $livro) { ?>
+                             <option value="<?php echo $livro->getId();?>">
+                                <?php echo $livro->getTitulo();?>
+                             </option>
+                       
+                        <?php }?>
                     </select>
                     <label for="livro_id">Livro:</label>
                 </div>
@@ -49,7 +70,7 @@
                     <label for="dataEmp">Data de Empréstimo:</label>
                 </div>
 
-<!--                 <div class="input-field col s12 m6">
+                <!--                 <div class="input-field col s12 m6">
                     <input placeholder="" id="dataDev" name="dataDev" type="text" class="datepicker validate">
                     <label for="dataDev">Data de Devolução:</label>
                 </div> -->
@@ -68,21 +89,22 @@
                 </div>
             </form>
         </div>
-        <div class="row"></div> </div>
+        <div class="row"></div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-          
+
             var selects = document.querySelectorAll('select');
             M.FormSelect.init(selects);
 
-            
+
             var datepickers = document.querySelectorAll('.datepicker');
             M.Datepicker.init(datepickers, {
-                format: 'dd-mm-yyyy', 
+                format: 'dd-mm-yyyy',
                 autoClose: true,
-                i18n: { 
+                i18n: {
                     cancel: 'Cancelar',
                     clear: 'Limpar',
                     done: 'Ok',
@@ -96,4 +118,5 @@
         });
     </script>
 </body>
+
 </html>
